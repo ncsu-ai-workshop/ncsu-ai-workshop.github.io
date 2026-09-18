@@ -167,6 +167,7 @@
                   <a href="exercise_two/test_app.py" class="btn btn-sm btn-outline-primary">🧪 test_app.py</a>
                   <a href="exercise_two/requirements.txt" class="btn btn-sm btn-outline-primary">📄 requirements.txt</a>
                 </div>
+                <a href="exercise_two/files.tar" class="btn btn-outline-primary">📦 All File (.tar)</a><p>
 
                 <h5>Walkthrough</h5>
                 <div class="d-flex gap-2 flex-wrap">
@@ -176,26 +177,50 @@
             </div>
           </div>
 
-          <!-- Initial Formal Walkthrough -->
+          <!-- Exercise Three -->
           <div class="col-12">
             <div class="card shadow-sm">
               <div class="card-body">
-                <h3 class="card-title">Initial Formal Walkthrough</h3>
-                <p class="card-text">Reference materials from the initial formal process walkthrough, including the step-by-step guide and the supporting codex.</p>
-                <div class="d-flex gap-2 flex-wrap">
-                  <a href="formal_process_start.pdf" class="btn btn-outline-primary">📄 Formal Process (PDF)</a>
-                  <a href="formal_process_codex.txt" class="btn btn-outline-primary">📝 Formal Process Codex</a>
-                  <a href="sample_ds_project.tar" class="btn btn-outline-primary">📦 Sample DS Project</a>
-                </div>
+                <h3 class="card-title">Exercise 3 — Model Context Provider(MCP): Context7</h3>
+                <p class="card-text">
+                Configure <a href="https://context7.com" target="_blank" rel="noopener noreferrer">Context7</a> for your coding agent and use it to retrieve current library documentation. Context7 exposes documentation through MCP, allowing your coding agent to look up current APIs and examples rather than relying entirely on its trained knowledge.  
+                </p>
+                <h5 class="mt-3">1. Utilize a coding agent without Context7</h5>
+                <ol>
+                  <li>Ask your coding agent: "What MCP servers and tools do you currently have available?"</li>
+                  <li>Review the output</li>
+                  <li>Show me how to create a Python validation model using the current version of Pydantic. Include one field validator.</li>
+                </ol>
+                <h5 class="mt-3">2. Install Context7</h5>
+                Context7 requires Node.js 18 or later. If necessary, install Node.js at <a href="https://nodejs.org/en/download" target="_blank" rel="noopener noreferrer">https://nodejs.org/en/download</a>.
+                <p></p>
+                From a terminal, run the following commands to install Context7 and start the server:
+                <pre><code>npx ctx7setup</code></pre>
+                Follow the prompts and:
+                <ol>
+                  <li>Select MCP Server</li>
+                  <li> Select your coding agent</li>
+                  <li>Complete the authentication process</li>
+                </ol>
+                <h5 class="mt-3">3. Use the coding agent with Context7</h5>
+                Ask your coding agent:
+                <pre><code>Using Context7, retrieve the current Pydantic documentation and show me how to create a model with one field validator. Tell me which documentation you used before writing the code.</code></pre>
+                <h5 class="mt-3">3. Review</h5>
+                <ol>
+                  <li>How did the coding agent answer the question without Context7?</li>
+                  <li>How did the coding agent answer the question with Context7? Was it necessary to directly reference Context7?</li>
+                  <li>What are the advantages of using Context7 with your coding agent?</li>
+                  <li>What are the disadvantages of using Context7 with your coding agent?</li>
+                  <li>Why might retrieving documentation be preferable to simply increasing the size or capability of the model?</li>
+                  <li>What could still go wrong even when the agent has access to authoritative documentation?</li>
+                </ol>
               </div>
             </div>
           </div>
 
+
         </div><!-- /row -->
 
-        <div class="text-center my-5">
-          <a href="../../index.html" class="btn btn-primary btn-lg">Back to Home</a>
-        </div>
 
       </div>
     </div>
