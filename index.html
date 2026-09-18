@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="../../ncstate-theme.css">
+    <link rel="stylesheet" href="ncstate-theme.css">
 
     <link rel="icon" type="image/x-icon" href="https://cdn.ncsu.edu/brand-assets/favicons/favicon.ico" sizes="any">
     <link rel="icon" href="https://cdn.ncsu.edu/brand-assets/favicons/favicon.svg" type="image/svg+xml">
@@ -167,7 +167,8 @@
                   <a href="exercise_two/test_app.py" class="btn btn-sm btn-outline-primary">🧪 test_app.py</a>
                   <a href="exercise_two/requirements.txt" class="btn btn-sm btn-outline-primary">📄 requirements.txt</a>
                 </div>
-                <a href="exercise_two/files.tar" class="btn btn-outline-primary">📦 All File (.tar)</a><p>
+                <a href="exercise_two/files.tar" class="btn btn-outline-primary">📦 All Files (.tar)</a>
+                <p></p>
 
                 <h5>Walkthrough</h5>
                 <div class="d-flex gap-2 flex-wrap">
@@ -181,7 +182,7 @@
           <div class="col-12">
             <div class="card shadow-sm">
               <div class="card-body">
-                <h3 class="card-title">Exercise 3 — Model Context Provider(MCP): Context7</h3>
+                <h3 class="card-title">Exercise 3 — Model Context Protocol (MCP): Context7</h3>
                 <p class="card-text">
                 Configure <a href="https://context7.com" target="_blank" rel="noopener noreferrer">Context7</a> for your coding agent and use it to retrieve current library documentation. Context7 exposes documentation through MCP, allowing your coding agent to look up current APIs and examples rather than relying entirely on its trained knowledge.  
                 </p>
@@ -189,13 +190,13 @@
                 <ol>
                   <li>Ask your coding agent: "What MCP servers and tools do you currently have available?"</li>
                   <li>Review the output</li>
-                  <li>Show me how to create a Python validation model using the current version of Pydantic. Include one field validator.</li>
+                  <li>Ask your coding agent: "Show me how to create a Python validation model using the current version of Pydantic. Include one field validator."</li>
                 </ol>
                 <h5 class="mt-3">2. Install Context7</h5>
                 Context7 requires Node.js 18 or later. If necessary, install Node.js at <a href="https://nodejs.org/en/download" target="_blank" rel="noopener noreferrer">https://nodejs.org/en/download</a>.
                 <p></p>
                 From a terminal, run the following commands to install Context7 and start the server:
-                <pre><code>npx ctx7setup</code></pre>
+                <pre><code>npx ctx7 setup</code></pre>
                 Follow the prompts and:
                 <ol>
                   <li>Select MCP Server</li>
@@ -205,7 +206,7 @@
                 <h5 class="mt-3">3. Use the coding agent with Context7</h5>
                 Ask your coding agent:
                 <pre><code>Using Context7, retrieve the current Pydantic documentation and show me how to create a model with one field validator. Tell me which documentation you used before writing the code.</code></pre>
-                <h5 class="mt-3">3. Review</h5>
+                <h5 class="mt-3">4. Review</h5>
                 <ol>
                   <li>How did the coding agent answer the question without Context7?</li>
                   <li>How did the coding agent answer the question with Context7? Was it necessary to directly reference Context7?</li>
@@ -214,6 +215,106 @@
                   <li>Why might retrieving documentation be preferable to simply increasing the size or capability of the model?</li>
                   <li>What could still go wrong even when the agent has access to authoritative documentation?</li>
                 </ol>
+              </div>
+            </div>
+          </div>
+
+          <!-- Exercise Four -->
+          <div class="col-12">
+            <div class="card shadow-sm">
+              <div class="card-body">
+                <h3 class="card-title">Exercise 4 — Install and Use an Agent Skill</h3>
+                <p class="text-muted small mb-2">Time: 10–15 minutes</p>
+                <p class="card-text">Install a small reusable skill into your coding agent and observe when the agent chooses to use it.</p>
+
+                <h5 class="mt-3">1. Create the skill</h5>
+                <p>In your working directory, create a file named <code>SKILL.md</code>:</p>
+                <pre><code>---
+name: change-review
+description: Review a code change for correctness, tests, error handling, and unnecessary complexity. Use when asked to review a diff, patch, or recently modified code.
+---
+
+# Change Review
+
+When reviewing a code change:
+
+1. Examine the change before proposing modifications.
+2. Look for correctness problems and edge cases.
+3. Identify missing or weak tests.
+4. Check error handling.
+5. Flag unnecessary complexity.
+
+Return:
+
+## Findings
+Problems that should be addressed.
+
+## Tests to Add
+Tests that would improve confidence.
+
+## Suggestions
+Non-critical improvements.
+
+Do not modify the code unless the user explicitly asks you to.</code></pre>
+
+                <h5 class="mt-4">2. Install it</h5>
+                <p>Choose the agent you are using.</p>
+                <div class="row g-3 mb-3">
+                  <div class="col-md-6">
+                    <div class="border rounded p-3 h-100">
+                      <h6>Claude Code</h6>
+                      <pre class="small mb-0"><code>mkdir -p .claude/skills/change-review
+cp SKILL.md .claude/skills/change-review/</code></pre>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="border rounded p-3 h-100">
+                      <h6>Codex</h6>
+                      <pre class="small mb-0"><code>mkdir -p .agents/skills/change-review
+cp SKILL.md .agents/skills/change-review/</code></pre>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="border rounded p-3 h-100">
+                      <h6>Gemini CLI</h6>
+                      <pre class="small mb-0"><code>mkdir -p .agents/skills/change-review
+cp SKILL.md .agents/skills/change-review/</code></pre>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="border rounded p-3 h-100">
+                      <h6>GitHub Copilot</h6>
+                      <pre class="small mb-0"><code>mkdir -p .github/skills/change-review
+cp SKILL.md .github/skills/change-review/</code></pre>
+                    </div>
+                  </div>
+                </div>
+                <p class="small text-muted">Copilot also recognizes <code>.agents/skills</code>, so the Codex/Gemini version can often be reused unchanged.</p>
+
+                <h5 class="mt-4">3. Test automatic activation</h5>
+                <p>Give the agent a normal request:</p>
+                <pre><code>Review the changes I have made to this project.</code></pre>
+                <p>Do <strong>not</strong> mention the skill. Observe whether the agent discovers and uses the skill from its description.</p>
+
+                <h5 class="mt-4">4. Test explicit activation</h5>
+                <p>Now explicitly request it:</p>
+                <pre><code>Use the change-review skill to review my changes.</code></pre>
+                <p>Compare the result.</p>
+
+                <h5 class="mt-4">5. Change the skill</h5>
+                <p>Add this instruction:</p>
+                <pre><code>Classify every finding as BLOCKING or NON-BLOCKING.</code></pre>
+                <p>Run the same review again.</p>
+
+                <h5 class="mt-4">Discuss</h5>
+                <p>What changed?</p>
+                <ul>
+                  <li>Did you have to restart or reload the agent?</li>
+                  <li>Could you tell when the skill was activated?</li>
+                  <li>How much behavior came from the model versus the skill?</li>
+                  <li>Is this better placed in a skill or in <code>CLAUDE.md</code>, <code>AGENTS.md</code>, <code>GEMINI.md</code>, or repository instructions?</li>
+                  <li>What parts of this skill could be shared across coding agents?</li>
+                </ul>
               </div>
             </div>
           </div>
